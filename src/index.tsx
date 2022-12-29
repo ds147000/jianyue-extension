@@ -1,11 +1,20 @@
 import ReactDOM from "react-dom/client";
 import Popup from "./view/popup";
 
-const div = document.createElement('div');
-document.body.appendChild(div);
-div.id = '__FashionnovaApp'
+// @ts-ignore
+if (!window.__initApp) {
 
-const root = ReactDOM.createRoot(div);
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+  div.id = '__FashionnovaApp'
+  
+  const root = ReactDOM.createRoot(div);
+  
+  root.render(<Popup />);
+  // @ts-ignore
+  window.__initApp = true;
+}
 
-root.render(<Popup />);
+
+
 
