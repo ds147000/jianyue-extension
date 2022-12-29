@@ -46,11 +46,9 @@ const Popup: React.FC = () => {
     refreshShop();
 
     window.addEventListener("scroll", refreshShop);
-    window.addEventListener("click", toggle);
 
     return () => {
       window.removeEventListener("scroll", refreshShop);
-      window.removeEventListener("click", toggle);
     };
   }, []);
 
@@ -65,6 +63,14 @@ const Popup: React.FC = () => {
       sendResponse({ status: "ok" });
     });
   }, []);
+
+  useEffect(() => {
+    if (show) window.addEventListener("click", toggle);
+
+    return () => {
+      window.removeEventListener("click", toggle);
+    }
+  }, [show])
 
   return (
     <div>
